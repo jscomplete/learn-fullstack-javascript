@@ -24,15 +24,15 @@
     "react-dom": "^15.3.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-eslint": "^6.1.2",
+    "babel-cli": "^6.16.0",
+    "babel-eslint": "^7.0.0",
     "babel-loader": "^6.2.5",
-    "babel-preset-es2015": "^6.14.0",
-    "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-2": "^6.13.0",
-    "eslint": "^3.5.0",
-    "eslint-plugin-react": "^6.3.0",
-    "nodemon": "^1.10.2",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-2": "^6.17.0",
+    "eslint": "^3.7.1",
+    "eslint-plugin-react": "^6.4.0",
+    "nodemon": "^1.11.0",
     "webpack": "^1.13.2"
   }
 }
