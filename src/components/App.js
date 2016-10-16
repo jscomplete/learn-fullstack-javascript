@@ -81,12 +81,28 @@ class App extends React.Component {
     }
     return this.state.names[nameId];
   };
+  addName = (newName, contestId) => {
+    api.addName(newName, contestId).then(resp =>
+      this.setState({
+        contests: {
+          ...this.state.contests,
+          [resp.updatedContest._id]: resp.updatedContest
+        },
+        names: {
+          ...this.state.names,
+          [resp.newName._id]: resp.newName
+        }
+      })
+    )
+    .catch(console.error);
+  };
   currentContent() {
     if (this.state.currentContestId) {
       return <Contest
                contestListClick={this.fetchContestList}
                fetchNames={this.fetchNames}
                lookupName={this.lookupName}
+               addName={this.addName}
                {...this.currentContest()} />;
     }
 
