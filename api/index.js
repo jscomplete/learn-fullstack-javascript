@@ -52,7 +52,32 @@ router.get('/contests/:contestId', (req, res) => {
   mdb.collection('contests')
     .findOne({ _id: ObjectID(req.params.contestId) })
     .then(contest => res.send(contest))
-    .catch(console.error);
+    .catch(error => {
+      console.error(error);
+      res.status(404).send('Bad Request');
+    });
+});
+
+router.post('/names', (req, res) => {
+  const contestId = ObjectID(req.body.contestId);
+  const name = req.body.newName;
+  // validation ...
+  mdb.collection('names').insertOne({ name }).then(result =>
+    mdb.collection('contests').findAndModify(
+      { _id: contestId },
+      [],
+      { $push: { nameIds: result.insertedId } },
+      { new: true }
+    ).then(doc =>
+      res.send({
+        updatedContest: doc.value,
+        newName: { _id: result.insertedId, name }
+      })
+    )
+  ).catch(error => {
+    console.error(error);
+    res.status(404).send('Bad Request');
+  });
 });
 
 export default router;
